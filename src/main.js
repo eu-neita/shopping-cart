@@ -11,6 +11,14 @@ const loadingStaging = () => {
   return loadSection.appendChild(p);
 };
 
+const createError = () => {
+  const loadSection = document.querySelector('.products');
+  const pa = document.createElement('p');
+  pa.setAttribute('class', 'error');
+  pa.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
+  return loadSection.appendChild(pa);
+};
+
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
 const printProducts = async () => {
@@ -22,8 +30,9 @@ const printProducts = async () => {
       sections.appendChild(createProductElement(product));
     });
   } catch (error) {
-    const sections = document.querySelector('.products');
-    sections.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
+    // const sections = document.querySelector('.products');
+    createError();
+    // sections.innerHTML = '';
   } finally {
     const p = document.querySelector('.loading');
     p.remove();

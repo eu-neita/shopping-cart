@@ -23,9 +23,10 @@ describe('Teste a função fetchProductsList', () => {
     expect(fetchListVeryfy).toBe(computadorSearch);
   });
 
-  it('testa se ao passar o parametro computador a função fetchProductsList tretorna o objeto correto', async () =>{
-    const fetchListVeryfy = await fetchProductsList('');
-    expect(fetchListVeryfy).toThrow(/^Termo de busca não informado$/);
+  it('testa se ao passar nenhum parametro a função fetchProductsList tretorna erro', () =>{
+    expect(async ()  => {
+      await fetchProductsList('')
+    }).toThrowError('Termo de busca não informado');
   });
   // it('...', () => {
   // });

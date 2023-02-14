@@ -5,10 +5,10 @@ import './style.css';
 
 const loadingStaging = () => {
   const loadSection = document.querySelector('.products');
-  const span = document.createElement('span');
-  span.setAttribute('id', 'load');
-  span.innerText = 'carregando...';
-  return loadSection.appendChild(span);
+  const p = document.createElement('p');
+  p.setAttribute('class', 'loading');
+  p.innerText = 'carregando...';
+  return loadSection.appendChild(p);
 };
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
@@ -25,8 +25,8 @@ const printProducts = async () => {
     const sections = document.querySelector('.products');
     sections.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
   } finally {
-    const span = document.querySelector('#load');
-    span.remove();
+    const p = document.querySelector('.loading');
+    p.remove();
   }
 };
 printProducts();

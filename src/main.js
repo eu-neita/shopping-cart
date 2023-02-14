@@ -25,5 +25,4 @@ const printProducts = async () => {
     sections.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
   }
 };
-
 printProducts();

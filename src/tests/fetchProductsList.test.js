@@ -23,10 +23,9 @@ describe('Teste a função fetchProductsList', () => {
     expect(fetchListVeryfy).toBe(computadorSearch);
   });
 
-  it('testa se ao passar nenhum parametro a função fetchProductsList tretorna erro', () =>{
-    expect(async ()  => {
-      await fetchProductsList('')
-    }).toThrowError('Termo de busca não informado');
+  it('testa se ao passar nenhum parametro a função fetchProductsList tretorna erro', async () =>{
+    const fetchProduReturn = await fetchProductsList('');
+    expect(fetchProduReturn.message).toBe('Termo de busca não informado');
   });
   // it('...', () => {
   // });

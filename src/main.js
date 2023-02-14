@@ -18,11 +18,15 @@ const printProducts = async () => {
     loadingStaging();
     const sections = document.querySelector('.products');
     const products = await fetchProductsList('computador');
-    products.forEach((product) => sections.appendChild(createProductElement(product)));
-    sections.removeChild(sections.firstElementChild);
+    products.forEach((product) => {
+      sections.appendChild(createProductElement(product));
+    });
   } catch (error) {
     const sections = document.querySelector('.products');
     sections.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
+  } finally {
+    const span = document.querySelector('#load');
+    span.remove();
   }
 };
 printProducts();

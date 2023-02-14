@@ -5,6 +5,8 @@ import './style.css';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
+
+
 const printProducts = async () => {
   try {
     const sections = document.querySelector('.products');

@@ -50,7 +50,7 @@ export const calcPrice = async () => {
   const totalValue = document.querySelector('.total-price');
   console.log(totalValue);
   const total = await result.reduce((a, b) => a + b.price, 0);
-  totalValue.innerText = total;
+  totalValue.innerText = total.toFixed(2);
   console.log(total);
 };
 

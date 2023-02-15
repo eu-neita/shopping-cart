@@ -27,15 +27,9 @@ const savedCart = async () => {
   const [catchCart] = document.getElementsByClassName('cart__products');
   const savedStorage = await Promise.all([...getSavedCartIDs()]);
   const allpro = [];
-  savedStorage.forEach(async (data) => {
-    allpro.push(fetchProduct(data));
-  });
+  savedStorage.forEach(async (data) => allpro.push(fetchProduct(data)));
   const result = await Promise.all([...allpro]);
-  console.log(result);
-  result.forEach((data) => {
-    catchCart
-      .appendChild(createCartProductElement(data));
-  });
+  result.forEach((data) => catchCart.appendChild(createCartProductElement(data)));
 };
 
 printProducts();

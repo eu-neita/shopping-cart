@@ -1,4 +1,4 @@
-import { removeCartID, saveCartID } from './cartFunctions';
+import { removeCartID, saveCartID, getSavedCartIDs } from './cartFunctions';
 import { fetchProduct } from './fetchFunctions';
 
 // Esses comentários que estão antes de cada uma das funções são chamados de JSdoc,
@@ -41,6 +41,19 @@ export const getIdFromProduct = (product) => (
   product.querySelector('span.product__id').innerText
 );
 
+export const calcPrice = async () => {
+  const savedStorage = getSavedCartIDs();
+  const allpro = [];
+  savedStorage.forEach(async (data) => allpro.push(fetchProduct(data)));
+  const result = await Promise.all([...allpro]);
+  // result.forEach((data) => console.log(data.price));
+  const totalValue = document.querySelector('.total-price');
+  console.log(totalValue);
+  const total = await result.reduce((a, b) => a + b.price, 0);
+  totalValue.innerText = total;
+  console.log(total);
+};
+
 /**
  * Função que remove o produto do carrinho.
  * @param {Element} li - Elemento do produto a ser removido do carrinho.
@@ -49,6 +62,7 @@ export const getIdFromProduct = (product) => (
 const removeCartProduct = (li, id) => {
   li.remove();
   removeCartID(id);
+  calcPrice();
 };
 
 /**
@@ -126,6 +140,7 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
   // cria elementos do carrinh o
   cartButton.addEventListener('click', async () => {
     saveCartID(id);
+    calcPrice();
     const [catchCart] = document.getElementsByClassName('cart__products');
     const product = await fetchProduct(id);
     // console.log(catchCart);

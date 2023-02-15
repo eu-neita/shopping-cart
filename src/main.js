@@ -1,6 +1,7 @@
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
-import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import { createProductElement,
+  createCartProductElement, calcPrice } from './helpers/shopFunctions';
 import { getSavedCartIDs } from './helpers/cartFunctions';
 import { loadingStaging, createError } from './helpers/adviserFunctions';
 import './style.css';
@@ -25,7 +26,7 @@ const printProducts = async () => {
 
 const savedCart = async () => {
   const [catchCart] = document.getElementsByClassName('cart__products');
-  const savedStorage = await Promise.all([...getSavedCartIDs()]);
+  const savedStorage = getSavedCartIDs();
   const allpro = [];
   savedStorage.forEach(async (data) => allpro.push(fetchProduct(data)));
   const result = await Promise.all([...allpro]);
@@ -34,3 +35,4 @@ const savedCart = async () => {
 
 printProducts();
 savedCart();
+calcPrice();

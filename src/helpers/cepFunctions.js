@@ -4,7 +4,7 @@ export const getAddress = async (cep) => {
   const promise2 = fetch(`https://brasilapi.com.br/api/cep/v2/${cep}`);
   const promises = [promise1, promise2];
   const result = await Promise.any(promises);
-  if (!result.ok) throw new Error('CEP não encontrado');
+  if (!result.ok) throw new TypeError('CEP não encontrado');
   const dataCep = await result.json();
   return dataCep;
 };
@@ -19,6 +19,6 @@ export const searchCep = async () => {
       .innerHTML = `${data.address} - ${data
         .district} - ${data.city} - ${data.state}`;
   } catch (error) {
-    cepDisplay.innerHTML = error.message;
+    cepDisplay.innerHTML = 'CEP não encontrado';
   }
 };

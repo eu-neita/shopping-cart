@@ -30,9 +30,7 @@ const printProducts = async () => {
       sections.appendChild(createProductElement(product));
     });
   } catch (error) {
-    // const sections = document.querySelector('.products');
     createError();
-    // sections.innerHTML = '';
   } finally {
     const p = document.querySelector('.loading');
     p.remove();

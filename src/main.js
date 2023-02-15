@@ -21,4 +21,5 @@ const printProducts = async () => {
     p.remove();
   }
 };
+
 printProducts();

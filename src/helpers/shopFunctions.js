@@ -126,10 +126,10 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
   // cria elementos do carrinho
   cartButton.addEventListener('click', async () => {
     saveCartID(id);
-    const catchCart = document.getElementsByClassName('cart__products');
+    const [catchCart] = document.getElementsByClassName('cart__products');
     const product = await fetchProduct(id);
     // console.log(catchCart);
-    catchCart[0].appendChild(createCartProductElement(product));
+    catchCart.appendChild(createCartProductElement(product));
   });
 
   section.appendChild(cartButton);

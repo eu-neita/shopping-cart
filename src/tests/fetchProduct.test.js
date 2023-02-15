@@ -15,12 +15,12 @@ describe('Teste a função fetchProduct', () => {
   
   it('fetch é chamado com o endpoint correto ao executar fetchProduct', async () => {
     await fetchProduct('MLB1405519561');
-    expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/sites/MLB/search?q=computador');
+    expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1405519561');
   });
 
   it('testa se ao passar o parametro MLB1405519561 a função fetchProduct tretorna o objeto correto', async () =>{
     const fetchListVeryfy = await fetchProduct('MLB1405519561');
-    expect(fetchListVeryfy).toBe(product);
+    expect(fetchListVeryfy).toStrictEqual(product);
   });
 
   it('testa se ao passar nenhum parametro a função fetchProduct tretorna erro', () =>{

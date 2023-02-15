@@ -4,6 +4,8 @@ import { createProductElement } from './helpers/shopFunctions';
 import { loadingStaging, createError } from './helpers/adviserFunctions';
 import './style.css';
 
+document.querySelector('.cep-button').addEventListener('click', searchCep);
+
 const printProducts = async () => {
   try {
     loadingStaging();

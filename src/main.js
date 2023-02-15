@@ -24,15 +24,18 @@ const printProducts = async () => {
 };
 
 const savedCart = async () => {
-  try {
-    const [catchCart] = document.getElementsByClassName('cart__products');
-    const savedStorage = getSavedCartIDs();
-    console.log(savedStorage);
-    savedStorage.forEach(async (pro) => catchCart
-      .appendChild(createCartProductElement(await fetchProduct(pro))));
-  } catch (error) {
-    return error.message;
-  }
+  const [catchCart] = document.getElementsByClassName('cart__products');
+  const savedStorage = await Promise.all([...getSavedCartIDs()]);
+  const allpro = [];
+  savedStorage.forEach(async (data) => {
+    allpro.push(fetchProduct(data));
+  });
+  const result = await Promise.all([...allpro]);
+  console.log(result);
+  result.forEach((data) => {
+    catchCart
+      .appendChild(createCartProductElement(data));
+  });
 };
 
 printProducts();

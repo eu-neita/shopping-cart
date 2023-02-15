@@ -1,6 +1,7 @@
 import { searchCep } from './helpers/cepFunctions';
-import { fetchProductsList } from './helpers/fetchFunctions';
-import { createProductElement } from './helpers/shopFunctions';
+import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
+import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import { getSavedCartIDs } from './helpers/cartFunctions';
 import { loadingStaging, createError } from './helpers/adviserFunctions';
 import './style.css';
 
@@ -22,4 +23,17 @@ const printProducts = async () => {
   }
 };
 
+const savedCart = async () => {
+  try {
+    const [catchCart] = document.getElementsByClassName('cart__products');
+    const savedStorage = getSavedCartIDs();
+    console.log(savedStorage);
+    savedStorage.forEach(async (pro) => catchCart
+      .appendChild(createCartProductElement(await fetchProduct(pro))));
+  } catch (error) {
+    return error.message;
+  }
+};
+
 printProducts();
+savedCart();

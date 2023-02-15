@@ -123,7 +123,7 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
     'Adicionar ao carrinho!',
   );
 
-  // cria elementos do carrinho
+  // cria elementos do carrinh o
   cartButton.addEventListener('click', async () => {
     saveCartID(id);
     const [catchCart] = document.getElementsByClassName('cart__products');
